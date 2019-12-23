@@ -1,5 +1,8 @@
 # xxdeenxx_infra
 xxdeenxx Infra repository
+
+ДЗ №3
+
 bastion_IP = 35.204.7.219
 someinternalhost_IP = 10.164.0.3
 
@@ -47,3 +50,39 @@ PIN 6214157507237678334670591556762
 
 после подключения к vpn, удалось подключится к someinternalhost хосту по внутреннему ip
 ssh 10.164.0.3
+
+ДЗ №4
+
+--Основное задание--
+
+testapp_IP = 34.90.63.191
+testapp_port = 9292
+
+Добавлены скрипты:
+install_ruby.sh     # Установка ruby
+install_mongodb.sh  # Установка mongodb
+deploy.sh           # Установка и запуск приложения
+
+--Доп задание--
+
+Добавлен скрипт startup_script.sh
+
+Создать инстанс:
+gcloud compute instances create reddit-app\
+  --boot-disk-size=10GB \
+  --image-family ubuntu-1604-lts \
+  --image-project=ubuntu-os-cloud \
+  --machine-type=g1-small \
+  --tags puma-server \
+  --metadata-from-file startup-script=./startup_script.sh \
+  --restart-on-failure
+
+Добавить правило:
+gcloud compute firewall-rules create default-puma-server \
+  --network default \
+  --action allow \
+  --direction ingress \
+  --rules tcp:9292 \
+  --source-ranges 0.0.0.0/0 \
+  --priority 1000 \
+  --target-tags puma-server
