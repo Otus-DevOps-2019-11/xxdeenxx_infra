@@ -1,0 +1,7 @@
+{
+
+  "project_id": "infra-777777",
+  "source_image_family": "ubuntu-1910",
+  "ssh_username": "user"
+
+}

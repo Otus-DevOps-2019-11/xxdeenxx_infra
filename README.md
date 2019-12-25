@@ -86,3 +86,25 @@ gcloud compute firewall-rules create default-puma-server \
   --source-ranges 0.0.0.0/0 \
   --priority 1000 \
   --target-tags puma-server
+
+ДЗ №5
+
+--Основное задание--
+
+Подготовлен packer шаблон для содзания обрааза VM
+packer/ubuntu16.json
+
+В готовом образе VM настроены ruby и mongodb
+
+--Доп задание--
+
+Подготовлен packer шаблон для содзания обрааза VM
+packer/immutable.json
+
+В готовом образе VM все зависимости приложения и сам код приложения
+
+Создать образ VM:
+packer build -var-file variables.json immutable.json
+
+Запустить виртуальную машину:
+./config-scripts/startup_script.sh
