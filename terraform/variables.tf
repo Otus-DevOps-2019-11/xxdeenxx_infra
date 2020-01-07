@@ -18,3 +18,15 @@ variable private_key_path {
 variable disk_image {
   description = "Disk image"
 }
+variable service_port {
+  description = ""
+}
+variable service_port_name {
+  description = ""
+}
+variable backend {
+  description = ""
+}
+variable "node_count" {
+  default = 1
+}
