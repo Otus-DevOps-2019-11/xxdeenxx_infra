@@ -8,5 +8,8 @@ cd $APP_DIR/reddit
 bundle install
 
 sudo mv /tmp/puma.service /etc/systemd/system/puma.service
+sudo chown -R appuser:appuser /home/appuser/reddit
+sudo cp /var/lib/gems/2.3.0/gems/puma-3.10.0/lib/puma.rb /home/appuser/reddit/puma.rb
+sudo systemctl daemon-reload
 sudo systemctl start puma
 sudo systemctl enable puma
