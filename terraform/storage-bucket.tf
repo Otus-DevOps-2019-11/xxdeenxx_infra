@@ -12,9 +12,9 @@ provider "random" {
 module "storage-bucket" {
   source        = "SweetOps/storage-bucket/google"
   version       = "0.3.0"
-  name          = "deen-bucket-test"
   location      = var.location
   force_destroy = true
+  name          = "deen-bucket-env"
 }
 output storage-bucket_url {
   value = module.storage-bucket.url

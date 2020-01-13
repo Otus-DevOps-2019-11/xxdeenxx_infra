@@ -1,5 +1,4 @@
 resource "google_compute_instance" "app" {
-  #  count        = var.node_count
   name         = "reddit-app-${var.env}"
   machine_type = "g1-small"
   zone         = var.zone
@@ -18,20 +17,25 @@ resource "google_compute_instance" "app" {
       nat_ip = google_compute_address.app_ip.address
     }
   }
-# connection {
-#   type        = "ssh"
-#   host        = self.network_interface[0].access_config[0].nat_ip
-#   user        = "appuser"
-#   agent       = false
-#   private_key = file(var.private_key_path)
-# }
- # provisioner "file" {
- #   source      = "files/puma.service"
- #   destination = "/tmp/puma.service"
- # }
- # provisioner "remote-exec" {
- #   script = "files/deploy.sh"
- # }
+  connection {
+    type        = "ssh"
+    host        = self.network_interface[0].access_config[0].nat_ip
+    user        = "appuser"
+    agent       = false
+    private_key = file(var.private_key_path)
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo echo DATABASE_URL=\"${var.db_ip}\" >> /tmp/env.conf",
+    ]
+  }
+  provisioner "file" {
+    source      = "/home/user/otus/xxdeenxx_infra/terraform/modules/app/puma.service"
+    destination = "/tmp/puma.service"
+  }
+  provisioner "remote-exec" {
+    script = "/home/user/otus/xxdeenxx_infra/terraform/modules/app/deploy.sh"
+  }
 }
 resource "google_compute_address" "app_ip" {
   name = "reddit-app-ip-${var.env}"
