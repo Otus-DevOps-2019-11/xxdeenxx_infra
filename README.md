@@ -1,7 +1,7 @@
 # xxdeenxx_infra
 xxdeenxx Infra repository
 
-ДЗ №3
+ДЗ №5
 
 bastion_IP = 35.204.7.219
 someinternalhost_IP = 10.164.0.3
@@ -51,7 +51,7 @@ PIN 6214157507237678334670591556762
 после подключения к vpn, удалось подключится к someinternalhost хосту по внутреннему ip
 ssh 10.164.0.3
 
-ДЗ №4
+ДЗ №6
 
 --Основное задание--
 
@@ -87,7 +87,7 @@ gcloud compute firewall-rules create default-puma-server \
   --priority 1000 \
   --target-tags puma-server
 
-ДЗ №5
+ДЗ №7
 
 --Основное задание--
 
@@ -109,7 +109,7 @@ packer build -var-file variables.json immutable.json
 Запустить виртуальную машину:
 ./config-scripts/startup_script.sh
 
-ДЗ №6
+ДЗ №8
 
 --Основное задание--
 
@@ -124,3 +124,13 @@ packer build -var-file variables.json immutable.json
    остаются только пользователи описаные в конфигурации terraform.
 3. Для настройки балансировщика использовался модуль "gce-lb-http"
 4. Добавлна переменная "count" через неё указывается количество инстансов
+
+ДЗ №9
+
+--Основное задание--
+
+1. Настроил модуль "storage-bucket для создания бакета
+
+--Доп задание--
+
+1. Нстроил хранение стейт файла в удаленном бекенде. Отдельно для каждого окружения stage и prod
