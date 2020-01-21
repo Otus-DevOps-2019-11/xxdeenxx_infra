@@ -24,18 +24,6 @@ resource "google_compute_instance" "app" {
     agent       = false
     private_key = file(var.private_key_path)
   }
-  provisioner "remote-exec" {
-    inline = [
-      "sudo echo DATABASE_URL=\"${var.db_ip}\" >> /tmp/env.conf",
-    ]
-  }
-  provisioner "file" {
-    source      = "/home/user/otus/xxdeenxx_infra/terraform/modules/app/puma.service"
-    destination = "/tmp/puma.service"
-  }
-  provisioner "remote-exec" {
-    script = "/home/user/otus/xxdeenxx_infra/terraform/modules/app/deploy.sh"
-  }
 }
 resource "google_compute_address" "app_ip" {
   name = "reddit-app-ip-${var.env}"

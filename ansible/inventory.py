@@ -28,7 +28,7 @@ class ExampleInventory(object):
     def example_inventory(self):
         return {
             'group': {
-                'hosts': ['34.90.197.102', '35.204.136.143'],
+                'hosts': ['35.204.136.143', '34.90.197.102'],
             }
         }
 
