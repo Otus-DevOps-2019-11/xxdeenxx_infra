@@ -150,7 +150,6 @@ packer build -var-file variables.json immutable.json
 
 1. Создал скрипт который генерирует динамический инвентори в
      JSON  формате
-pcpa
 
 ДЗ №11
 
