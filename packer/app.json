@@ -4,12 +4,12 @@
       "source_image_family": null,
       "ssh_username": null,
       "machine_type": "g1-small",
-      "image_description": "image_for_HW7",
+      "image_description": "image_for_HW11",
       "disk_type": "pd-standard",
       "disk_size": "10",
       "network": "default",
       "tags": "puma-server",
-      "zone": "europe-west4-a"
+      "zone": "europe-west4-b"
   },
   "builders": [
     {
@@ -30,9 +30,8 @@
   ],
   "provisioners": [
     {
-      "type": "shell",
-      "script": "scripts/install_ruby.sh",
-      "execute_command": "sudo {{.Path}}"
+      "type": "ansible",
+      "playbook_file": "ansible/packer_app.yml"
     }
   ]
 }

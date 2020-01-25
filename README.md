@@ -78,11 +78,11 @@ gcloud compute instances create reddit-app\
   --restart-on-failure
 
 Добавить правило:
-gcloud compute firewall-rules create default-puma-server \
+gcloud compute firewall-rules create default-ssh-server \
   --network default \
   --action allow \
   --direction ingress \
-  --rules tcp:9292 \
+  --rules tcp:22 \
   --source-ranges 0.0.0.0/0 \
   --priority 1000 \
   --target-tags puma-server
@@ -150,3 +150,19 @@ packer build -var-file variables.json immutable.json
 
 1. Создал скрипт который генерирует динамический инвентори в
      JSON  формате
+
+ДЗ №11
+
+--Основное задание--
+
+1. Знакомство с Ansible
+    - Создал  главный плейбук, который включает в себя
+      - import_playbook: db.yml
+      - import_playbook: app.yml
+      - import_playbook: deploy.yml
+
+--Доп задание--
+
+1. Настроил dynamic inventory с помощью плагина gcp_compute
+2. Изменил  секцию Provision в образе на "type": "ansible"
+   Билд новых образов происходит с использованием нового провижинера

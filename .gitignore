@@ -6,4 +6,5 @@ variables.json
 *.tfvars
 .terraform/
 venv/
+*.retry
 .vscode/
