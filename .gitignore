@@ -8,3 +8,5 @@ variables.json
 venv/
 *.retry
 .vscode/
+jdauphant.nginx
+vault.key

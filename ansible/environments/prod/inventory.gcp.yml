@@ -1,0 +1,11 @@
+plugin: gcp_compute
+zones: # populate inventory with instances in these regions
+  - europe-west4-b
+projects:
+  - infra-262519
+groups:
+  app: "'-app-' in name"
+  db: "'-db-' in name"
+filters: []
+service_account_file: ~/infra-262519-8fb9ebc31f98.json
+auth_kind: serviceaccount
